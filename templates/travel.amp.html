@@ -19,6 +19,22 @@
 
 <script custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js" async=""></script>
 
+<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+<script async custom-element="amp-access" src="https://cdn.ampproject.org/v0/amp-access-0.1.js"></script>
+<script id="amp-access" type="application/json">{
+  "authorization": "https://ampbyexample.com/oauth/status",
+  "noPingback": "true",
+  "login": {
+  "google-sign-in": "https://ampbyexample.com/oauth/login/google",
+  "github-sign-in": "https://ampbyexample.com/oauth/login/github",
+  "sign-out": "https://ampbyexample.com/oauth/logout"
+  },
+  "authorizationFallbackResponse": {
+  "error": true,
+  "loggedIn": false
+  }
+  }</script>
+
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 
   <style amp-custom="">/*! Bassplate | MIT License | http://github.com/basscss/bassplate */
@@ -94,6 +110,10 @@
       <header>
         <h1 class="travel-hero-heading mb2 line-height-1">Voluntariado<br class="md-hide lg-hide"> hecho f&aacute;cil</h1>
         <h2 class="travel-hero-subheading line-height-2 bold xs-hide sm-hide">Encuentra una causa que te apasione.</h2>
+	<span amp-access="NOT loggedIn" role="button" tabindex="0" amp-access-hide>
+	  <h5>Haz login para participar</h5>
+	  <button on="tap:amp-access.login-google-sign-in" class="button-primary comment-button">Login</button>
+	  </span>
       </header>
       <!-- Search Form -->
       <div class="travel-hero-search">
